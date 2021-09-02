@@ -7,9 +7,9 @@ const getBookResult = async () => {
     if( getInputValue === ''){
         let noResult = document.getElementById('no-result');
         noResult.innerText = 'Please write book name to get result.'
+        
     }
     else{
-        noResult.innerText = '';
         const url = `https://openlibrary.org/search.json?q=${getInputValue}`
         const res = await fetch(url);
         const bookData = await res.json();
@@ -28,10 +28,9 @@ const displayBook = async (searchedBook, bookFound) => {
 
     if(searchedBook.length === 0){
         const noResult = document.getElementById('no-result');
-        noResult.innerText = 'Your result is not found! please write carefully.'
+        noResult.innerText = 'Your result is not found! Please write carefully.'
     }
     else{
-        noResult.innerText = '';
         searchedBook.forEach(books => {
             const div = document.createElement('div');
             div.classList.add('col')
@@ -46,6 +45,8 @@ const displayBook = async (searchedBook, bookFound) => {
             </div>
             `
             displayBook.appendChild(div);
+            const noResult = document.getElementById('no-result');
+            noResult.innerText = ''
         });
     }
 };
