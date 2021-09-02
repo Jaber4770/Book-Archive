@@ -9,6 +9,7 @@ const getBookResult = async () => {
         noResult.innerText = 'Please write book name to get result.'
     }
     else{
+        noResult.innerText = '';
         const url = `https://openlibrary.org/search.json?q=${getInputValue}`
         const res = await fetch(url);
         const bookData = await res.json();
@@ -30,6 +31,7 @@ const displayBook = async (searchedBook, bookFound) => {
         noResult.innerText = 'Your result is not found! please write carefully.'
     }
     else{
+        noResult.innerText = '';
         searchedBook.forEach(books => {
             const div = document.createElement('div');
             div.classList.add('col')
