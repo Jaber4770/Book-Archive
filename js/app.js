@@ -12,21 +12,19 @@ const getBookResult = async () => {
         const url = `https://openlibrary.org/search.json?q=${getInputValue}`
         const res = await fetch(url);
         const bookData = await res.json();
-        displayBook(bookData.docs);
-        const totalResult = document.getElementById('total-result');
-        const h5 = document.createElement('h5');
-        h5.innerText = `Total result found: ${bookData.numFound}`
-        totalResult.appendChild(h5);
-        
+        displayBook(bookData.docs, bookData);
     }
 };
 
 
 // display search result
 
-const displayBook = async searchedBook => {
+const displayBook = async (searchedBook, bookFound) => {
     const displayBook = document.getElementById('set-search-result');
     displayBook.textContent = '';
+    const totalResult = document.getElementById('total-result');
+    totalResult.innerText = `Total book founded: ${bookFound.numFound}`;
+
     if(searchedBook.length === 0){
         const noResult = document.getElementById('no-result');
         noResult.innerText = 'your result is not found'
@@ -48,7 +46,6 @@ const displayBook = async searchedBook => {
             displayBook.appendChild(div);
         });
     }
-
-}
+};
 
 
