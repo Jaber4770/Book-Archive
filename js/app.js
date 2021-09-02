@@ -13,13 +13,18 @@ const getBookResult = async () => {
         const res = await fetch(url);
         const bookData = await res.json();
         displayBook(bookData.docs);
+        const totalResult = document.getElementById('total-result');
+        const h5 = document.createElement('h5');
+        h5.innerText = `Total result found: ${bookData.numFound}`
+        totalResult.appendChild(h5);
+        
     }
 };
 
 
 // display search result
 
-const displayBook = searchedBook => {
+const displayBook = async searchedBook => {
     const displayBook = document.getElementById('set-search-result');
     displayBook.textContent = '';
     if(searchedBook.length === 0){
@@ -35,9 +40,8 @@ const displayBook = searchedBook => {
                 <img src="https://covers.openlibrary.org/b/id/${books.cover_i}-M.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4 class="card-title">${books.title}</h4>
-                    <h5 class="card-title">${books.author_name}</h5>
-                    <p>First Publish Year: ${books.first_publish_year}</p>
-                    <p class="card-text">${books.title}</p>
+                    <h6 class="card-title">Author: ${books.author_name}</h6>
+                    <p>First Publish Year: ${books?.first_publish_year}</p>
                 </div>
             </div>
             `
