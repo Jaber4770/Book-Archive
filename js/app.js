@@ -27,7 +27,7 @@ const displayBook = async (searchedBook, bookFound) => {
 
     if(searchedBook.length === 0){
         const noResult = document.getElementById('no-result');
-        noResult.innerText = 'your result is not found'
+        noResult.innerText = 'Your result is not found! please write carefully.'
     }
     else{
         searchedBook.forEach(books => {
