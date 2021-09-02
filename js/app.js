@@ -1,15 +1,15 @@
-// get search text and find book
-
+// get search text from input field
 const getBookResult = async () => {
     const getInput = document.getElementById('get-input-value');
     const getInputValue = getInput.value;
     getInput.value = '';
+    // cheak input value
     if( getInputValue === ''){
         let noResult = document.getElementById('no-result');
         noResult.innerText = 'Please write book name to get result.'
-        
     }
     else{
+        // dynamic search link
         const url = `https://openlibrary.org/search.json?q=${getInputValue}`
         const res = await fetch(url);
         const bookData = await res.json();
@@ -17,20 +17,21 @@ const getBookResult = async () => {
     }
 };
 
-
 // display search result
-
 const displayBook = async (searchedBook, bookFound) => {
+    // set founded result
     const displayBook = document.getElementById('set-search-result');
     displayBook.textContent = '';
+    // display total result founded
     const totalResult = document.getElementById('total-result');
     totalResult.innerText = `Total book founded: ${bookFound.numFound}`;
-
+    // cheak input value for search
     if(searchedBook.length === 0){
         const noResult = document.getElementById('no-result');
         noResult.innerText = 'Your result is not found! Please write carefully.'
     }
     else{
+        // set information of founded book 
         searchedBook.forEach(books => {
             const div = document.createElement('div');
             div.classList.add('col')
@@ -45,6 +46,7 @@ const displayBook = async (searchedBook, bookFound) => {
             </div>
             `
             displayBook.appendChild(div);
+            // clear error message
             const noResult = document.getElementById('no-result');
             noResult.innerText = ''
         });
