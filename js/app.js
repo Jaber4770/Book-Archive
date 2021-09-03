@@ -41,7 +41,8 @@ const displayBook = async (searchedBook, bookFound) => {
                 <div class="card-body">
                     <h4 class="card-title">${books.title}</h4>
                     <h6 class="card-title">Author: ${books.author_name}</h6>
-                    <p>First Publish Year: ${books?.first_publish_year}</p>
+                    <p>First Publish Year: ${books.first_publish_year}</p>
+                    <p>Publisher: ${books.publisher}</p>
                 </div>
             </div>
             `
